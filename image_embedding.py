@@ -62,9 +62,9 @@ class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
     """Handle requests in a separate thread."""
 
 def main():
-    server_address = ('', 8080)
+    server_address = ('0.0.0.0', 8080)
     httpd = ThreadedHTTPServer(server_address, ImageEmbeddingHandler)
-    print("Server running on port 8080")
+    print("Server running on 0.0.0.0:8080")
     httpd.serve_forever()
 
 if __name__ == "__main__":
