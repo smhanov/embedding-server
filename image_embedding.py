@@ -2,6 +2,7 @@ import sys
 import torch
 from transformers import AutoFeatureExtractor, AutoModel
 from PIL import Image
+import numpy as np
 
 def main():
     if len(sys.argv) != 2:
@@ -17,7 +18,9 @@ def main():
 
     # Load and preprocess the image
     image = Image.open(image_path)
-    inputs = feature_extractor(images=image, return_tensors="pt")
+    image = image.convert("RGB")
+    image = np.array(image)
+    inputs = feature_extractor(images=[image], return_tensors="pt")
 
     # Compute the image embedding
     with torch.no_grad():
