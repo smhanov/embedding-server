@@ -4,6 +4,7 @@ from PIL import Image
 import numpy as np
 import json
 from http.server import HTTPServer, BaseHTTPRequestHandler
+from socketserver import ThreadingMixIn
 import cgi
 
 # Load pre-trained model and feature extractor
@@ -57,9 +58,12 @@ class ImageEmbeddingHandler(BaseHTTPRequestHandler):
         except Exception as e:
             self.send_error(500, f"Internal server error: {str(e)}")
 
+class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
+    """Handle requests in a separate thread."""
+
 def main():
     server_address = ('', 8080)
-    httpd = HTTPServer(server_address, ImageEmbeddingHandler)
+    httpd = ThreadedHTTPServer(server_address, ImageEmbeddingHandler)
     print("Server running on port 8080")
     httpd.serve_forever()
 
