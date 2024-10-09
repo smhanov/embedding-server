@@ -7,6 +7,23 @@ This project provides a simple HTTP server that generates embeddings for images 
 - Docker
 - NVIDIA GPU (optional, but recommended for better performance)
 
+## Quick Start
+
+To quickly get started with the pre-built Docker image from Docker Hub:
+
+```bash
+docker pull smhanov/embedding-server
+docker run -d -p 8080:8080 smhanov/embedding-server
+```
+
+If you have an NVIDIA GPU and want to use it for faster processing:
+
+```bash
+docker run -d --gpus all -p 8080:8080 smhanov/embedding-server
+```
+
+The server will start and listen on `http://localhost:8080`.
+
 ## Getting Started
 
 ### Setting up Docker with NVIDIA CUDA support
@@ -18,8 +35,7 @@ If you have an NVIDIA GPU and want to use it for faster processing, you need to 
    - For Ubuntu: Follow the instructions at [NVIDIA Container Toolkit Installation Guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker)
    - For other operating systems, refer to the appropriate guide in the NVIDIA documentation.
 
-
-### Buliding it from scratch
+### Building from source
 
 1. Clone this repository:
    ```
