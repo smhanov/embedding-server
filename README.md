@@ -23,9 +23,25 @@ docker run -d --gpus all -p 8080:8080 smhanov/embedding-server
 
 The server will start and listen on `http://localhost:8080`.
 
-## Getting Started
 
-### Setting up Docker with NVIDIA CUDA support
+## Usage
+
+To get an embedding for an image, send a POST request to the server with the image file. Here's an example using curl:
+
+```
+curl -X POST -F "file=@/path/to/your/image.jpg" http://localhost:8080
+```
+
+Replace `/path/to/your/image.jpg` with the actual path to the image file you want to process.
+
+The server will respond with a JSON array representing the image embedding, with 768 entries:
+
+```
+[0.135996475815773, 0.6955150365829468, 0.6349724531173706, -0.45712369680404663, -0.06541338562965393, -0.1636616736650467, ..., ]
+```
+
+
+## Setting up Docker with NVIDIA CUDA support
 
 If you have an NVIDIA GPU and want to use it for faster processing, you need to set up Docker to work with NVIDIA CUDA drivers:
 
@@ -34,7 +50,7 @@ If you have an NVIDIA GPU and want to use it for faster processing, you need to 
    - For Ubuntu: Follow the instructions at [NVIDIA Container Toolkit Installation Guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker)
    - For other operating systems, refer to the appropriate guide in the NVIDIA documentation.
 
-### Building from source
+## Building from source
 
 1. Clone this repository:
    ```
@@ -58,18 +74,6 @@ If you have an NVIDIA GPU and want to use it for faster processing, you need to 
      ```
 
    The server will start and listen on `http://localhost:8080`. Omit the -d if you want to run it in the terminal rather than as a service.
-
-## Usage
-
-To get an embedding for an image, send a POST request to the server with the image file. Here's an example using curl:
-
-```
-curl -X POST -F "file=@/path/to/your/image.jpg" http://localhost:8080
-```
-
-Replace `/path/to/your/image.jpg` with the actual path to the image file you want to process.
-
-The server will respond with a JSON array representing the image embedding.
 
 ## License
 
