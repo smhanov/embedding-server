@@ -5,7 +5,6 @@ import numpy as np
 import json
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import cgi
-import io
 
 # Load pre-trained model and feature extractor
 model_name = "google/vit-base-patch16-224"
