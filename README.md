@@ -18,13 +18,8 @@ If you have an NVIDIA GPU and want to use it for faster processing, you need to 
    - For Ubuntu: Follow the instructions at [NVIDIA Container Toolkit Installation Guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker)
    - For other operating systems, refer to the appropriate guide in the NVIDIA documentation.
 
-3. Verify the installation:
-   ```
-   sudo docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi
-   ```
-   If successful, this command should display information about your GPU.
 
-### Running the Image Embedding Service
+### Buliding it from scratch
 
 1. Clone this repository:
    ```
@@ -34,20 +29,20 @@ If you have an NVIDIA GPU and want to use it for faster processing, you need to 
 
 2. Build the Docker image:
    ```
-   docker build -t image-embedding-service .
+   docker build -t embedding-server .
    ```
 
 3. Run the Docker container:
    - Without GPU:
      ```
-     docker run -p 8080:8080 image-embedding-service
+     docker run -d -p 8080:8080 embedding-server
      ```
    - With GPU (if NVIDIA Container Toolkit is set up):
      ```
-     docker run --gpus all -p 8080:8080 image-embedding-service
+     docker run -d --gpus all -p 8080:8080 embedding-server
      ```
 
-   The server will start and listen on `http://localhost:8080`.
+   The server will start and listen on `http://localhost:8080`. Omit the -d if you want to run it in the terminal rather than as a service.
 
 ## Usage
 
