@@ -12,7 +12,6 @@ This project provides a simple HTTP server that generates embeddings for images 
 To quickly get started with the pre-built Docker image from Docker Hub:
 
 ```bash
-docker pull smhanov/embedding-server
 docker run -d -p 8080:8080 smhanov/embedding-server
 ```
 
@@ -39,8 +38,8 @@ If you have an NVIDIA GPU and want to use it for faster processing, you need to 
 
 1. Clone this repository:
    ```
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone https://github.com/smhanov/embedding-server
+   cd embedding-server
    ```
 
 2. Build the Docker image:
